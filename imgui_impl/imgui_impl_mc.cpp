@@ -1,12 +1,6 @@
 #include "imgui_impl/imgui_impl_mc.hpp"
 #include <minecraft/src-deps/minecraftrenderer/renderer/Mesh.hpp>
-#include <minecraft/src-client/common/client/renderer/RenderMaterialGroup.hpp>
 #include <minecraft/src-deps/minecraftrenderer/renderer/MaterialPtr.hpp>
-#include <minecraft/src-deps/core/container/Blob.hpp>
-#include <minecraft/src-deps/coregraphics/ImageDescription.hpp>
-#include <minecraft/src-deps/coregraphics/ImageBuffer.hpp>
-#include <minecraft/src-deps/minecraftrenderer/renderer/TextureContainer.hpp>
-#include <minecraft/src-client/common/client/renderer/TextureGroup.hpp>
 #include <minecraft/src-client/common/client/renderer/screen/MinecraftUIRenderContext.hpp>
 #include <minecraft/src-client/common/client/renderer/Tessellator.hpp>
 #include <minecraft/src-client/common/client/game/IClientInstance.hpp>
@@ -18,9 +12,7 @@
 
 static Tessellator* tess;
 static mce::MaterialPtr* mUIMaterial = reinterpret_cast<mce::MaterialPtr*>(SlideAddress(0x59BD7E0));
-static mce::ClientTexture* clientTexture = nullptr;
 static mce::TexturePtr texturePtr;
-mce::TextureGroup* textureGroup = nullptr;
 bool hasUnloadedTextures = false; 
 
 
@@ -75,12 +67,8 @@ IMGUI_IMPL_API bool ImGui_ImplMc_Init(MinecraftUIRenderContext& ctx)
 	ImGuiStyle& style = ImGui::GetStyle();
 	style.AntiAliasedLines = false;
 	style.AntiAliasedFill = false;
-	//style.AntiAliasedLinesUseTex = false;
-	//style.FrameRounding = 0.0f;
-	//style.WindowRounding = 0.0f;
 
 	_LoadFontTexture(ctx);
-
 	return true;
 }
 
